@@ -1,0 +1,40 @@
+esphome:
+  name: temp-test
+  friendly_name: temp-test
+
+esp8266:
+  board: d1_mini
+  framework:
+    version: 2.7.4
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: "iEXIabMIbGFRSbdk+RbHVE9zH3l9GARsvIsF5s4Pklk="
+
+ota:
+  password: "09ee81bed00bc1eccc18f6f0a9bbfc38"
+
+wifi:
+  ssid: #SSID
+  password: #PASSWD
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Temp-Test Fallback Hotspot"
+    password: "S74D5lWsFrEx"
+
+captive_portal:
+    
+sensor:
+  - platform: dht
+    model: DHT22
+    pin: D4
+    temperature:
+      name: "Living Room Temperature"
+    humidity:
+      name: "Living Room Humidity"
+    update_interval: 5s
