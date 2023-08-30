@@ -1,0 +1,57 @@
+esphome:
+  name: esp8266
+  friendly_name: dresser-led-controller
+
+esp8266:
+  board: d1_mini
+  framework:
+    version: 2.7.4
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: #API KEY
+
+ota:
+
+
+wifi:
+  ssid: #SSID
+  password: #PASSWD
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: #SSID
+    password: #PASSWD
+
+captive_portal:
+
+# Example configuration entry
+light:
+  - platform: fastled_clockless
+    chipset: WS2812B
+    pin: D4
+    num_leds: 124
+    rgb_order: GRB
+    name: "dresser-leds"
+    effects:
+      - addressable_color_wipe:
+          name: Color Wipe
+          colors:
+            - red: 100%
+              green: 100%
+              blue: 100%
+              num_leds: 1
+            - red: 0%
+              green: 0%
+              blue: 0%
+              num_leds: 1
+          add_led_interval: 100ms
+          reverse: false
+      - addressable_rainbow:
+          name: Rainbow
+          speed: 10
+          width: 50
